@@ -2,6 +2,7 @@
 > The "Suckless" Unit Testing Framework for C++20
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+[![CMake on multiple platforms](https://github.com/rfdickerson/testless/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/rfdickerson/testless/actions/workflows/cmake-multi-platform.yml)
 
 Header-only • Zero boilerplate • IDE-native • Fast as hell
 
