@@ -1,5 +1,5 @@
 #include "ModernTest.hpp"
 
-int main() {
-    return mt::run_all_tests();
+int main(int argc, char* argv[]) {
+    return mt::run_all_tests(argc, argv);
 }
