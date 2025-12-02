@@ -19,7 +19,10 @@ add_library(ModernTest::Runner ALIAS ModernTest_Runner)
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     enable_testing()
     include(GoogleTest)
-    add_executable(sanity_check tests/sanity_check.cpp)
+    add_executable(sanity_check
+        tests/sanity_check.cpp
+        tests/advanced_check.cpp
+    )
     target_link_libraries(sanity_check PRIVATE ModernTest::Runner)
     gtest_discover_tests(sanity_check)
 endif()
