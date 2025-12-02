@@ -1,5 +1,7 @@
 # ModernTest
-> The “Suckless” Unit Testing Framework for C++20
+> The "Suckless" Unit Testing Framework for C++20
+
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 Header-only • Zero boilerplate • IDE-native • Fast as hell
 
@@ -7,9 +9,9 @@ ModernTest is a tiny, expressive, C++20-first testing library. It abandons the l
 
 It compiles in milliseconds, requires no setup, and even impersonates the GoogleTest protocol—so CLion, VS Code, and CTest just work out of the box.
 
-⚡ Quick Start
-1. Add to CMake (no installation needed)
+## ⚡ Quick Start
 
+### 1. Add to CMake (no installation needed)
 ```cmake
 include(FetchContent)
 FetchContent_Declare(
@@ -28,11 +30,11 @@ include(GoogleTest)
 gtest_discover_tests(unit_tests)
 ```
 
-2. The Syntax
+### 2. The Syntax
 
 Forget ASSERT_EQ, ASSERT_NE, or macro jungles.
 Just write C++.
-
+```cpp
 #include "ModernTest.hpp"
 
 TEST("Basic Math", [] {
@@ -52,21 +54,27 @@ TEST("Containers", [] {
     expect(v).not().is_empty();
     expect(v).has_size(3);
 });
+```
 
-🆚 Why ModernTest?
+## 🆚 Why ModernTest?
+
 Because boilerplate is a tax.
-Feature	GoogleTest	Catch2	ModernTest
-Boilerplate	High (fixtures, classes, macros)	Medium	Zero (lambdas)
-Assertions	ASSERT_EQ(a, b)	REQUIRE(a == b)	expect(a) == b
-Negation	ASSERT_NE(a, b)	REQUIRE(a != b)	expect(a).not() == b
-Mocking	Heavy (inheritance)	External	Functional mocks built-in
-IDE Integration	Native	Plugins	Native (GTest protocol impersonation)
-Compile Speed	Slow link step	Slow-ish	Milliseconds
-🧠 Advanced Features
-Functional Mocks
+
+| Feature | GoogleTest | Catch2 | ModernTest |
+|---------|-----------|--------|------------|
+| Boilerplate | High (fixtures, classes, macros) | Medium | Zero (lambdas) |
+| Assertions | ASSERT_EQ(a, b) | REQUIRE(a == b) | expect(a) == b |
+| Negation | ASSERT_NE(a, b) | REQUIRE(a != b) | expect(a).not() == b |
+| Mocking | Heavy (inheritance) | External | Functional mocks built-in |
+| IDE Integration | Native | Plugins | Native (GTest protocol impersonation) |
+| Compile Speed | Slow link step | Slow-ish | Milliseconds |
+
+## 🧠 Advanced Features
+
+### Functional Mocks
 
 Mock functions—not classes.
-
+```cpp
 // Mock int(int)
 auto square = mt::mock<int(int)>([](int x) { return x * x; });
 
@@ -74,14 +82,14 @@ square(5);
 
 expect(square).to_have_been_called_times(1);
 expect(square).to_have_been_called_with(5);
-
+```
 
 No inheritance. No virtual tables. Just lambdas.
 
-Data-Driven Tests (C++20 native)
+### Data-Driven Tests (C++20 native)
 
 No TEST_P, no bizarre macro expansions.
-
+```cpp
 TEST("String Truncation", [] {
     struct Case { std::string in; int len; std::string out; };
     std::vector<Case> cases = {
@@ -93,35 +101,37 @@ TEST("String Truncation", [] {
         expect(truncate(in, len)) == out;
     }
 });
+```
 
-Game-Dev Ready (Vectors, Flags, Bitmasks)
+### Game-Dev Ready (Vectors, Flags, Bitmasks)
 
 Built with C++20 game engines in mind.
-
+```cpp
 // Fuzzy equality for any type with .x/.y/.z
 expect(player.pos).to_be_approx(target.pos, 0.001f);
 
 // Vulkan-style bitmask checking
 expect(image_flags).to_have_flag(VK_IMAGE_USAGE_SAMPLED_BIT);
+```
 
-🛠️ IDE Integration
+## 🛠️ IDE Integration
 
 ModernTest implements the GoogleTest CLI protocol, so your IDE already understands it.
 
-CLion
+### CLion
 
 Run → Edit Configurations → + → Google Test
 
-Target your unit_tests binary
-You get full test trees, clickable failures, and debugging.
+- Target your unit_tests binary
+- You get full test trees, clickable failures, and debugging.
 
-VS Code
+### VS Code
 
 Install C++ Test Mate
 
-It will auto-detect your tests
-Run and debug tests individually via the “Beaker” icon.
+- It will auto-detect your tests
+- Run and debug tests individually via the "Beaker" icon.
 
-📜 License
+## 📜 License
 
 MIT License. Hack freely.
